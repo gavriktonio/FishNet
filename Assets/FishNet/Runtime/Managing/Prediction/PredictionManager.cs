@@ -542,6 +542,13 @@ namespace FishNet.Managing.Predicting
 
                     if (timeManagerPhysics)
                     {
+                        // Add this line to simulate physics for the reconciled state
+                        if (tickDelta > 0f) 
+                        {
+                            Physics.Simulate(tickDelta);
+                            Physics2D.Simulate(tickDelta);
+                        }
+                        
                         OnPrePhysicsTransformSync?.Invoke(ClientStateTick, ServerStateTick);
                         Physics.SyncTransforms();
                         Physics2D.SyncTransforms();
